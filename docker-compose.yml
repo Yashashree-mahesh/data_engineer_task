@@ -1,0 +1,65 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ratings
+      POSTGRES_USER: ratings
+      POSTGRES_PASSWORD: ratings
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ratings -d ratings"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://ratings:ratings@postgres:5432/ratings
+      DATA_DIR: /app/data
+      REPORTS_DIR: /app/reports
+      LOG_LEVEL: INFO
+    volumes:
+      - ./data:/app/data:ro
+      - ./reports:/app/reports
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pipeline:
+    build: .
+    profiles: ["pipeline"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://ratings:ratings@postgres:5432/ratings
+      DATA_DIR: /app/data
+      REPORTS_DIR: /app/reports
+      LOG_LEVEL: INFO
+    volumes:
+      - ./data:/app/data:ro
+      - ./reports:/app/reports
+    command: ["python", "-m", "app.cli"]
+
+  test:
+    build: .
+    profiles: ["test"]
+    environment:
+      DATABASE_URL: sqlite:///./test.db
+      DATA_DIR: /app/data
+      REPORTS_DIR: /app/reports
+    command: ["pytest", "-q"]
+
+volumes:
+  postgres_data:

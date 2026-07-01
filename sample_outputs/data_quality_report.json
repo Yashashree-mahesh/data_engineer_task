@@ -1,0 +1,38 @@
+{
+  "run_id": 1,
+  "status": "success",
+  "files_seen": 4,
+  "files_processed": 4,
+  "files_skipped": 0,
+  "quality_reports": [
+    {
+      "source_filename": "corporates_A_1.xlsm",
+      "has_errors": false,
+      "completeness_rate": 1.0,
+      "validity_rate": 1.0,
+      "rule_format": "issues include rule_id, severity, field, and message when a rule fires",
+      "issues": []
+    },
+    {
+      "source_filename": "corporates_A_2.xlsm",
+      "has_errors": false,
+      "completeness_rate": 1.0,
+      "validity_rate": 1.0,
+      "issues": []
+    },
+    {
+      "source_filename": "corporates_B_1.xlsm",
+      "has_errors": false,
+      "completeness_rate": 1.0,
+      "validity_rate": 1.0,
+      "issues": []
+    },
+    {
+      "source_filename": "corporates_B_2.xlsm",
+      "has_errors": false,
+      "completeness_rate": 1.0,
+      "validity_rate": 1.0,
+      "issues": []
+    }
+  ]
+}

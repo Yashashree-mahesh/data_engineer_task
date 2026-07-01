@@ -1,0 +1,11 @@
+2026-06-17T19:45:00Z INFO pipeline run_id=1 status=running files_seen=4
+2026-06-17T19:45:00Z INFO extracted source=corporates_A_1.xlsm rows=40 entity="Company A"
+2026-06-17T19:45:00Z INFO validated source=corporates_A_1.xlsm completeness=1.0 validity=1.0
+2026-06-17T19:45:00Z INFO loaded source=corporates_A_1.xlsm company_id=1 version=1 snapshot_id=1
+2026-06-17T19:45:00Z INFO extracted source=corporates_A_2.xlsm rows=40 entity="Company A"
+2026-06-17T19:45:00Z INFO loaded source=corporates_A_2.xlsm company_id=1 version=2 snapshot_id=2
+2026-06-17T19:45:00Z INFO extracted source=corporates_B_1.xlsm rows=40 entity="Company B"
+2026-06-17T19:45:00Z INFO loaded source=corporates_B_1.xlsm company_id=2 version=1 snapshot_id=3
+2026-06-17T19:45:00Z INFO extracted source=corporates_B_2.xlsm rows=40 entity="Company B"
+2026-06-17T19:45:00Z INFO loaded source=corporates_B_2.xlsm company_id=2 version=2 snapshot_id=4
+2026-06-17T19:45:01Z INFO pipeline run_id=1 status=success processed=4 skipped=0 duration_seconds=0.87
